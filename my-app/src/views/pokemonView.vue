@@ -1,14 +1,3 @@
-<template>
-  <div>
-    <h1>Axios Data</h1>
-    <ul>
-      <li v-for="pokemon in pokemonData" :key="pokemon.name">
-        {{ pokemon.name }}
-      </li>
-    </ul>
-  </div>
-</template>
-
 <script>
 import { ref, onMounted } from "vue";
 import axios from "axios";
@@ -27,13 +16,60 @@ export default {
       }
     };
 
+    const getPokemonImageUrl = (index) => {
+      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index}.png`;
+    };
+
     onMounted(() => {
       fetchData();
     });
 
     return {
       pokemonData,
+      getPokemonImageUrl,
     };
   },
 };
 </script>
+<template>
+  <div class="container">
+    <div
+      class="card"
+      v-for="(pokemon, index) in pokemonData"
+      :key="pokemon.name"
+    >
+      <h1>Pokemon Name: {{ pokemon.name }}</h1>
+      <img
+        :src="getPokemonImageUrl(index + 1)"
+        alt="pokemonImage"
+        width="300"
+        height="300"
+      />
+    </div>
+  </div>
+</template>
+<style scoped>
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  gap: 10px;
+}
+
+.card {
+  background-color: azure;
+  height: fit-content;
+  width: fit-content;
+  border-radius: 10px;
+  margin: auto;
+}
+.card h1 {
+  font-size: 18px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: black;
+  font-weight: bold;
+}
+</style>

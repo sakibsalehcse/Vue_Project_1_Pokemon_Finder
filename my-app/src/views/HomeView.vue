@@ -6,9 +6,9 @@ import PokemonView from "../views/pokemonView.vue";
 <template>
   <div class="maindiv">
     <SearchBar />
-    <PokemonView />
+    <h1>Pokemons</h1>
     <div class="home">
-      <h1>PokeMon</h1>
+      <PokemonView />
       <AshPikachu />
     </div>
   </div>
