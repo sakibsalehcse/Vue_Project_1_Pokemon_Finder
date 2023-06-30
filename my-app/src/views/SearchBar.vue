@@ -10,7 +10,7 @@
 <style scoped>
 * {
   margin: 0;
-  padding: 0;
+  padding: 0 0 1% 0;
   box-sizing: border-box;
   background-color: black;
 }
