@@ -37,7 +37,7 @@ export default {
         itemData.value = {
           name: response.data.name,
           description: response.data.description,
-          imageUrl: response.data.imageUrl, // Replace with the actual image URL property in the response
+          imageUrl: response.data.imageUrl,
         };
       } catch (error) {
         console.error(error);

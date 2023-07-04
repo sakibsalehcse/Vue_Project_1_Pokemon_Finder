@@ -11,6 +11,7 @@ export default {};
 <style scoped>
 .body {
   background-color: yellow;
-  height: 100vh;
+  height: 65vh;
+  border-radius: 10px;
 }
 </style>

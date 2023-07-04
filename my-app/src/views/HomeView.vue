@@ -9,7 +9,7 @@ import PokemonView from "../views/pokemonView.vue";
     <h1>Pokemons</h1>
     <div class="home">
       <PokemonView />
-      <AshPikachu />
+      <div class="visible"><AshPikachu /></div>
     </div>
   </div>
 </template>
@@ -24,5 +24,32 @@ import PokemonView from "../views/pokemonView.vue";
 .home {
   display: flex;
   justify-content: space-between;
+}
+@media only screen and (max-width: 767px) {
+  .visible {
+    display: none;
+  }
+  .maindiv {
+    display: flex;
+    justify-content: space-between;
+    background-color: cadetblue;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .visible {
+    display: none;
+  }
+  .maindiv {
+    display: flex;
+    justify-content: space-between;
+    background-color: cadetblue;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  }
 }
 </style>
