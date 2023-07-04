@@ -1,9 +1,31 @@
+<template>
+  <div class="container">
+    <div
+      class="card"
+      v-for="(pokemon, index) in pokemonData"
+      :key="pokemon.name"
+    >
+      <h1>Pokemon Name: {{ pokemon.name }}</h1>
+      <img
+        :src="getPokemonImageUrl(index + 1)"
+        alt="pokemonImage"
+        width="300"
+        height="300"
+        @click="navigateToPokemonDetails(pokemon)"
+      />
+    </div>
+  </div>
+</template>
+
 <script>
 import { ref, onMounted } from "vue";
 import axios from "axios";
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
+    const router = useRouter();
+
     const pokemonData = ref(null);
 
     const fetchData = async () => {
@@ -24,30 +46,19 @@ export default {
       fetchData();
     });
 
+    const navigateToPokemonDetails = (pokemon) => {
+      router.push({ name: "PokemonDetails", params: { name: pokemon.name } });
+    };
+
     return {
       pokemonData,
       getPokemonImageUrl,
+      navigateToPokemonDetails,
     };
   },
 };
 </script>
-<template>
-  <div class="container">
-    <div
-      class="card"
-      v-for="(pokemon, index) in pokemonData"
-      :key="pokemon.name"
-    >
-      <h1>Pokemon Name: {{ pokemon.name }}</h1>
-      <img
-        :src="getPokemonImageUrl(index + 1)"
-        alt="pokemonImage"
-        width="300"
-        height="300"
-      />
-    </div>
-  </div>
-</template>
+
 <style scoped>
 .container {
   display: grid;
@@ -60,12 +71,13 @@ export default {
 }
 
 .card {
-  background-color: azure;
+  background-color: yellow;
   height: fit-content;
   width: fit-content;
   border-radius: 10px;
   margin: auto;
 }
+
 .card h1 {
   font-size: 18px;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;

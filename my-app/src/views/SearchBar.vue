@@ -1,7 +1,9 @@
 <template>
-  <div class="searchBox">
-    <input id="pokemonName" type="text" placeholder="Search Pokemon " />
-    <button id="search">🔍</button>
+  <div>
+    <form class="searchBox" action="" @submit.prevent="getData">
+      <input id="pokemonName" type="search" placeholder="Search Pokemon " />
+      <button type="submit" id="search">🔍</button>
+    </form>
   </div>
 </template>
 
