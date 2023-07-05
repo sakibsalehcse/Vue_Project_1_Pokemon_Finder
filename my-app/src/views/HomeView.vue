@@ -20,12 +20,17 @@ import PokemonView from "../views/pokemonView.vue";
   background-color: cadetblue;
   display: flex;
   flex-direction: column;
+  margin: auto;
 }
 .home {
   display: flex;
   justify-content: space-between;
+  margin: auto 4% auto 0;
 }
 @media only screen and (max-width: 767px) {
+  .home {
+    margin: auto;
+  }
   .visible {
     display: none;
   }
@@ -40,6 +45,9 @@ import PokemonView from "../views/pokemonView.vue";
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .home {
+    margin: auto;
+  }
   .visible {
     display: none;
   }

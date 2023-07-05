@@ -1,19 +1,21 @@
 <template>
-  <div class="container">
-    <!-- <div class="search-bar">
+  <div class="main">
+    <div class="container">
+      <!-- <div class="search-bar">
       <input type="text" v-model="searchQuery" placeholder="Search Pokemon" />
     </div> -->
-    <div
-      class="card"
-      v-for="(pokemon, index) in filteredPokemon"
-      :key="pokemon.name"
-    >
-      <h1>Pokemon Name: {{ pokemon.name }}</h1>
-      <img
-        :src="getPokemonImageUrl(index + totalPokemon + 1)"
-        alt="pokemonImage"
-        @click="navigateToPokemonDetails(pokemon)"
-      />
+      <div
+        class="card"
+        v-for="(pokemon, index) in filteredPokemon"
+        :key="pokemon.name"
+      >
+        <h1>Pokemon Name: {{ pokemon.name }}</h1>
+        <img
+          :src="getPokemonImageUrl(index + totalPokemon + 1)"
+          alt="pokemonImage"
+          @click="navigateToPokemonDetails(pokemon)"
+        />
+      </div>
     </div>
     <div class="buttons">
       <button v-if="totalPokemon > 0" @click="previousPage">Previous</button>
@@ -78,6 +80,11 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.main {
+  align-content: center;
+  justify-content: center;
+  margin: auto;
+}
 .container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
