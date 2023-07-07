@@ -3,20 +3,21 @@
     <h1>
       Item Details for <span class="pokemon-name">{{ name }}</span>
     </h1>
-    <div v-if="itemData">
+    <div v-if="itemData" class="container">
       <!-- <h3>Name : {{ itemData.name }}</h3> -->
-      <h3>Name : {{ name }}</h3>
-      <h3>ID : {{ id }}</h3>
-      <h3>Ability : {{ ability }}</h3>
-      <h3>Type : {{ type }}</h3>
-      <h3>Weight : {{ weight }}</h3>
-      <h3>Height : {{ height }}</h3>
-      <h3>Base stat : {{ base_stat }}</h3>
-      <h3>Game Index : {{ game_index }}</h3>
-      <h3>Base Experience : {{ base_Experience }}</h3>
-      <!-- <p>Item Description: {{ itemData.description }}</p> -->
-
-      <img :src="itemData.imageUrl" :alt="itemData.name" />
+      <div class="info">
+        <h3>Name : {{ name }}</h3>
+        <h3>ID : {{ id }}</h3>
+        <h3>Ability : {{ ability }}</h3>
+        <h3>Type : {{ type }}</h3>
+        <h3>Weight : {{ weight }}</h3>
+        <h3>Height : {{ height }}</h3>
+        <h3>Base stat : {{ base_stat }}</h3>
+        <h3>Game Index : {{ game_index }}</h3>
+        <h3>Base Experience : {{ base_Experience }}</h3>
+        <!-- <p>Item Description: {{ itemData.description }}</p> -->
+      </div>
+      <div><img :src="itemData.imageUrl" :alt="itemData.name" /></div>
     </div>
     <div v-else>
       <p>Loading</p>
@@ -112,6 +113,27 @@ export default {
 h1 {
   color: lightgreen;
 }
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: yellow;
+  height: 70vh;
+  width: 60vw;
+  margin: auto;
+  border-radius: 10px;
+}
+img {
+  height: 400px;
+  width: 400px;
+}
+
+.info {
+  color: red;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  text-align: left;
+}
 
 p {
   color: white;
@@ -119,5 +141,43 @@ p {
 
 h1 .pokemon-name {
   color: red;
+}
+
+@media only screen and (max-width: 767px) {
+  .container {
+    height: 60vh;
+    width: 65vw;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  img {
+    height: 100px;
+    width: 100px;
+  }
+
+  .info {
+    font-size: small;
+    text-align: center;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1499px) {
+  .container {
+    height: 70vh;
+    width: 60vw;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  img {
+    height: 200px;
+    width: 200px;
+  }
+
+  .info {
+    font-size: medium;
+    text-align: center;
+  }
 }
 </style>
