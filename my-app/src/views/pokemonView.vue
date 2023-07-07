@@ -2,19 +2,25 @@
   <div class="main">
     <div class="container">
       <!-- <div class="search-bar">
-      <input type="text" v-model="searchQuery" placeholder="Search Pokemon" />
-    </div> -->
+        <input type="text" v-model="searchQuery" placeholder="Search Pokemon" />
+      </div> -->
       <div
         class="card"
         v-for="(pokemon, index) in filteredPokemon"
         :key="pokemon.name"
       >
-        <h1>Pokemon Name: {{ pokemon.name }}</h1>
-        <img
-          :src="getPokemonImageUrl(index + totalPokemon + 1)"
-          alt="pokemonImage"
-          @click="navigateToPokemonDetails(pokemon)"
-        />
+        <button @click="AddTOFav">
+          <span v-if="isFav">⭐</span>
+          <span v-if="!isFav">⚝</span>
+        </button>
+
+        <div @click="navigateToPokemonDetails(pokemon)">
+          <h1>Pokemon Name: {{ pokemon.name }}</h1>
+          <img
+            :src="getPokemonImageUrl(index + totalPokemon + 1)"
+            alt="pokemonImage"
+          />
+        </div>
       </div>
     </div>
     <div class="buttons">
@@ -31,16 +37,25 @@ import { ref, computed, onMounted } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
 
+const isFav = ref(false);
+function AddTOFav() {
+  isFav.value = !isFav.value;
+}
+
 const router = useRouter();
 const pokemonData = ref([]);
 const pokemonCount = ref(0);
 const totalPokemon = ref(0);
 const searchQuery = ref("");
-
+const limit = ref(6);
+console.log(AddTOFav);
 const fetchData = async () => {
   try {
+    // if (searchQuery.value != null) {
+    //   limit.value = 100;
+    // }
     const response = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon?limit=6&offset=${totalPokemon.value}`
+      `https://pokeapi.co/api/v2/pokemon?limit=${limit.value}&offset=${totalPokemon.value}`
     );
     pokemonData.value = response.data.results;
     pokemonCount.value = response.data.count;
@@ -68,6 +83,7 @@ const nextPage = () => {
 };
 
 const filteredPokemon = computed(() => {
+  // console.log(searchQuery);
   const query = searchQuery.value.toLowerCase();
   return pokemonData.value.filter((pokemon) =>
     pokemon.name.toLowerCase().includes(query)
@@ -115,7 +131,10 @@ onMounted(() => {
   justify-content: center;
   margin: 20px 0;
 }
-
+.card button {
+  margin: 2px;
+  background: white;
+}
 button {
   margin: 0 10px;
   background-color: yellow;
@@ -144,6 +163,10 @@ input[type="text"] {
 }
 
 @media only screen and (max-width: 767px) {
+  .card button {
+    height: auto;
+    width: auto;
+  }
   .container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
