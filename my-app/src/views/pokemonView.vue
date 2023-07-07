@@ -9,9 +9,15 @@
         v-for="(pokemon, index) in filteredPokemon"
         :key="pokemon.name"
       >
-        <button @click="AddTOFav">
-          <span v-if="isFav">⭐</span>
-          <span v-if="!isFav">⚝</span>
+        <button
+          :class="{
+            'is-fav': pokemon.isFav,
+            'not-fav': !pokemon.isFav,
+          }"
+          @click="AddTOFav(pokemon)"
+        >
+          <span v-if="pokemon.isFav">⭐</span>
+          <span v-else>Add to Fav</span>
         </button>
 
         <div @click="navigateToPokemonDetails(pokemon)">
@@ -37,10 +43,10 @@ import { ref, computed, onMounted } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
 
-const isFav = ref(false);
-function AddTOFav() {
-  isFav.value = !isFav.value;
-}
+// const isFav = ref(false);
+// function AddTOFav() {
+//   isFav.value = !isFav.value;
+// }
 
 const router = useRouter();
 const pokemonData = ref([]);
@@ -48,7 +54,6 @@ const pokemonCount = ref(0);
 const totalPokemon = ref(0);
 const searchQuery = ref("");
 const limit = ref(6);
-console.log(AddTOFav);
 const fetchData = async () => {
   try {
     // if (searchQuery.value != null) {
@@ -63,6 +68,18 @@ const fetchData = async () => {
     console.error(error);
   }
 };
+
+pokemonData.value.forEach((pokemon) => {
+  pokemon.isFav = false;
+});
+
+function AddTOFav(pokemon) {
+  pokemonData.value.forEach((p) => {
+    if (p == pokemon) {
+      p.isFav = !p.isFav;
+    }
+  });
+}
 
 const getPokemonImageUrl = (index) => {
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index}.png`;
@@ -101,6 +118,12 @@ onMounted(() => {
   justify-content: center;
   margin: auto;
 }
+.is-fav {
+  background-color: white;
+}
+.not-fav {
+  background-color: white;
+}
 .container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -131,10 +154,7 @@ onMounted(() => {
   justify-content: center;
   margin: 20px 0;
 }
-.card button {
-  margin: 2px;
-  background: white;
-}
+
 button {
   margin: 0 10px;
   background-color: yellow;
