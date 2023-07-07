@@ -22,6 +22,9 @@ import PokemonView from "../views/pokemonView.vue";
   flex-direction: column;
   margin: auto;
 }
+h1 {
+  color: white;
+}
 .home {
   display: flex;
   justify-content: space-between;

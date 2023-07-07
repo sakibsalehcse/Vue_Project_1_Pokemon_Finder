@@ -1,9 +1,7 @@
 <template>
   <div class="main">
+    <!-- <input type="text" v-model="searchQuery" placeholder="Search Pokemon" /> -->
     <div class="container">
-      <!-- <div class="search-bar">
-        <input type="text" v-model="searchQuery" placeholder="Search Pokemon" />
-      </div> -->
       <div
         class="card"
         v-for="(pokemon, index) in filteredPokemon"
