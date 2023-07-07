@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>
-      Item Details for <span class="pokemon-name">{{ name }}</span>
+      Details of <span class="pokemon-name">{{ name }}</span>
     </h1>
     <div v-if="itemData" class="container">
       <!-- <h3>Name : {{ itemData.name }}</h3> -->
