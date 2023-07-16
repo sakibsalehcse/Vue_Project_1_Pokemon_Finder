@@ -30,6 +30,9 @@ import AshPikachu from "../views/AshPikachu.vue";
   justify-content: center;
   align-items: center;
 }
+h1 {
+  color: greenyellow;
+}
 .pik {
   height: auto;
   width: auto;

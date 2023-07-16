@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import PokemonDetails from "../views/PokemonDetails.vue";
 import AboutView from "../views/AboutView.vue";
+import FavPokeomList from "../components/FavPokemonList.vue";
 
 const routes = [
   {
@@ -19,6 +20,11 @@ const routes = [
     path: "/about",
     name: "about",
     component: AboutView,
+  },
+  {
+    path: "/favPokemonList",
+    name: "favPokemonList",
+    component: FavPokeomList,
   },
 ];
 

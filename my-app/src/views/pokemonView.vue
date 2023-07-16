@@ -1,62 +1,74 @@
 <template>
-  <div class="main">
-    <!-- <input type="text" v-model="searchQuery" placeholder="Search Pokemon" /> -->
-    <div class="container">
-      <div
-        class="card"
-        v-for="(pokemon, index) in filteredPokemon"
-        :key="pokemon.name"
-      >
-        <button
-          :class="{
-            'is-fav': pokemon.isFav,
-            'not-fav': !pokemon.isFav,
-          }"
-          @click="AddTOFav(pokemon)"
+  <div class="one">
+    <div class="main">
+      <h1>{{ localStorageData }}</h1>
+      <!-- <input type="text" v-model="searchQuery" placeholder="Search Pokemon" /> -->
+      <div class="container">
+        <div
+          class="card"
+          v-for="(pokemon, index) in filteredPokemon"
+          :key="pokemon.name"
         >
-          <span v-if="pokemon.isFav">⭐</span>
-          <span v-else>Add to Fav</span>
-        </button>
+          <button
+            :class="{
+              'is-fav': pokemon.isFav,
+              'not-fav': !pokemon.isFav,
+            }"
+            @click="AddTOFav(pokemon)"
+          >
+            <!-- <span v-if="isFavPokemon(pokemon)">⭐</span>
+            <span v-else>Add to Fav</span> -->
+            <span v-if="isFav">⭐</span>
+            <span v-else>Add to Fav</span>
+          </button>
 
-        <div @click="navigateToPokemonDetails(pokemon)">
-          <h1>Pokemon Name: {{ pokemon.name }}</h1>
-          <img
-            :src="getPokemonImageUrl(index + totalPokemon + 1)"
-            alt="pokemonImage"
-          />
+          <div @click="navigateToPokemonDetails(pokemon)">
+            <h1>Pokemon Name: {{ pokemon.name }}</h1>
+            <img
+              :src="getPokemonImageUrl(index + totalPokemon + 1)"
+              alt="pokemonImage"
+            />
+          </div>
         </div>
       </div>
+      <div class="buttons">
+        <button v-if="totalPokemon > 0" @click="previousPage">Previous</button>
+        <button v-if="totalPokemon + 6 < pokemonCount" @click="nextPage">
+          Next
+        </button>
+      </div>
     </div>
-    <div class="buttons">
-      <button v-if="totalPokemon > 0" @click="previousPage">Previous</button>
-      <button v-if="totalPokemon + 6 < pokemonCount" @click="nextPage">
-        Next
-      </button>
-    </div>
+    <!-- <h1>Favorite's Pokémon list</h1>
+    <div v-for="favpokemon in favPokimonList" :key="favpokemon.name">
+      <h1 :style="{ color: 'white', fontSize: '10px' }">
+        {{ favpokemon.name }}
+      </h1>
+    </div> -->
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, onBeforeMount } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
-
-// const isFav = ref(false);
+// const localStorageData = JSON.parse(localStorage.getItem("data"));
+// console.log(localStorageData);
+const isFav = ref(false);
 // function AddTOFav() {
 //   isFav.value = !isFav.value;
 // }
-
+// const localVal = ref([]);
+const favPokimonList = ref([]);
 const router = useRouter();
 const pokemonData = ref([]);
 const pokemonCount = ref(0);
 const totalPokemon = ref(0);
 const searchQuery = ref("");
 const limit = ref(6);
+// const Global = ref([]);
 const fetchData = async () => {
   try {
-    // if (searchQuery.value != null) {
     //   limit.value = 100;
-    // }
     const response = await axios.get(
       `https://pokeapi.co/api/v2/pokemon?limit=${limit.value}&offset=${totalPokemon.value}`
     );
@@ -66,18 +78,6 @@ const fetchData = async () => {
     console.error(error);
   }
 };
-
-pokemonData.value.forEach((pokemon) => {
-  pokemon.isFav = false;
-});
-
-function AddTOFav(pokemon) {
-  pokemonData.value.forEach((p) => {
-    if (p == pokemon) {
-      p.isFav = !p.isFav;
-    }
-  });
-}
 
 const getPokemonImageUrl = (index) => {
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index}.png`;
@@ -97,6 +97,46 @@ const nextPage = () => {
   fetchData();
 };
 
+function AddTOFav(pokemon) {
+  console.log(favPokimonList.value, pokemon);
+  if (favPokimonList.value !== null) {
+    console.log(1);
+    let flg = false;
+    favPokimonList.value.forEach((p) => {
+      if (p == pokemon) {
+        console.log(2);
+        favPokimonList.value.pop(pokemon);
+        flg = true;
+        isFav.value = !isFav.value;
+      }
+    });
+    if (flg == false) {
+      console.log(3);
+      favPokimonList.value.push(pokemon);
+      isFav.value = true;
+    }
+  } else {
+    favPokimonList.value.push(pokemon);
+  }
+  console.log(4);
+  const StoreLocalVal = JSON.stringify(favPokimonList.value);
+  console.log(favPokimonList);
+  localStorage.setItem("LocalValFavPokemon", StoreLocalVal);
+}
+
+onBeforeMount(() => {
+  console.log("testing local");
+  let a = localStorage.getItem("LocalValFavPokemon");
+  console.log(a, typeof a);
+  if (a != null) {
+    // console.log(a);
+    console.log("valo paici");
+    favPokimonList.value = JSON.parse(
+      localStorage.getItem("LocalValFavPokemon")
+    );
+  }
+});
+
 const filteredPokemon = computed(() => {
   // console.log(searchQuery);
   const query = searchQuery.value.toLowerCase();
@@ -108,6 +148,21 @@ const filteredPokemon = computed(() => {
 onMounted(() => {
   fetchData();
 });
+
+// function isFavPokemon(pokemon) {
+//   console.log(pokemon);
+//   if (favPokimonList.value) {
+//     favPokimonList.value.forEach((p) => {
+//       if (p == pokemon) {
+//         console.log(5);
+//         return true;
+//       } else {
+//         return false;
+//       }
+//     });
+//   }
+// }
+// console.log(isFavPokemon);
 </script>
 
 <style scoped>
@@ -128,16 +183,44 @@ onMounted(() => {
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin: 0 auto auto auto;
+  margin: 0 auto auto 20%;
+  height: auto;
+  width: auto;
   gap: 10px;
 }
 
 .card {
-  background-color: yellow;
-  height: fit-content;
-  width: fit-content;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0)
+  );
   border-radius: 10px;
+  height: min-content;
+  width: min-content;
   margin: auto;
+  padding: 10px;
+  color: white;
+  transition: box-shadow 0.3s ease-in-out;
+}
+.card button {
+  transition: box-shadow 0.3s ease-in-out;
+}
+.card button:hover {
+  background: linear-gradient(
+    to right bottom,
+    rgba(185, 8, 10),
+    rgb(250, 244, 0)
+  );
+  box-shadow: 0 0 10px 3px yellow;
+}
+.card:hover {
+  box-shadow: 0 0 40px 20px rgb(26, 104, 107);
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 1)
+  );
 }
 
 .card h1 {
@@ -195,7 +278,7 @@ input[type="text"] {
     gap: 10px;
   }
   .card {
-    background-color: yellow;
+    background-color: green;
     height: 13rem;
     width: 10rem;
     border-radius: 10px;
@@ -218,7 +301,7 @@ input[type="text"] {
     gap: 10px;
   }
   .card {
-    background-color: yellow;
+    background-color: green;
     height: 16rem;
     width: 12rem;
     border-radius: 10px;
@@ -231,15 +314,14 @@ input[type="text"] {
 }
 @media only screen and (min-width: 1500px) {
   .card {
-    background-color: yellow;
     height: fit-content;
     width: fit-content;
     border-radius: 10px;
     margin: auto;
   }
   .card img {
-    height: 300px;
-    height: 300px;
+    height: 250px;
+    height: 250px;
   }
 }
 </style>

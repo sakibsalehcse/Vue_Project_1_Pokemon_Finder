@@ -1,17 +1,23 @@
 <template>
   <div class="body">
     <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link class="link" to="/">Home</router-link> |
+      <router-link class="link" to="/about">About</router-link> |
+      <router-link class="link" to="/favPokemonList"
+        >Favourite Pokemon List</router-link
+      >
     </nav>
     <router-view />
   </div>
 </template>
-
+<script setup></script>
 <style>
 body {
   margin: 0;
   padding: 0;
+}
+.link {
+  text-decoration: none;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

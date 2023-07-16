@@ -10,8 +10,19 @@ export default {};
 
 <style scoped>
 .body {
-  background-color: yellow;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 1)
+  );
   height: 65vh;
   border-radius: 10px;
+}
+.body:hover {
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0)
+  );
 }
 </style>
