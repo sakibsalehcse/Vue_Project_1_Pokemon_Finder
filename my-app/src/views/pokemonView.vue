@@ -203,6 +203,10 @@ onMounted(() => {
   color: white;
   transition: box-shadow 0.3s ease-in-out;
 }
+.card img {
+  height: 250px;
+  height: 250px;
+}
 .card button {
   transition: box-shadow 0.3s ease-in-out;
 }
