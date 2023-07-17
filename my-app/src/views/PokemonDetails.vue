@@ -117,19 +117,31 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: yellow;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0)
+  );
   height: 70vh;
   width: 60vw;
   margin: auto;
   border-radius: 10px;
 }
+.container:hover {
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 1)
+  );
+}
+
 img {
   height: 400px;
   width: 400px;
 }
 
 .info {
-  color: red;
+  color: black;
   font-family: Arial, Helvetica, sans-serif;
   font-size: large;
   text-align: left;

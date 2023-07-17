@@ -24,8 +24,13 @@ const myArray = computed(() => myArrayRef.value.map((pokemon) => pokemon.name));
 <style scoped>
 .main {
   height: auto;
-  width: 10%;
-  background-color: yellow;
+  width: 30%;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 1)
+  );
+  /* background-color: white; */
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -33,9 +38,9 @@ const myArray = computed(() => myArrayRef.value.map((pokemon) => pokemon.name));
   border-radius: 10px;
 }
 h1 {
-  color: black;
+  color: lightgreen;
 }
 h2 {
-  color: red;
+  color: black;
 }
 </style>
