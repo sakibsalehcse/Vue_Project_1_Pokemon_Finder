@@ -1,12 +1,12 @@
 <script setup>
 import AshPikachu from "../views/AshPikachu.vue";
-import SearchBar from "../views/SearchBar.vue";
-import PokemonView from "../views/pokemonView.vue";
+// import SearchBar from "../views/SearchBar.vue";
+import PokemonView from "../views/pokemonView2.vue";
 </script>
 <template>
   <div class="maindiv">
-    <SearchBar />
-    <h1>Pokemons</h1>
+    <!-- <SearchBar /> -->
+    <!-- <h1>Pokemons</h1> -->
     <div class="home">
       <PokemonView />
       <div class="visible"><AshPikachu /></div>

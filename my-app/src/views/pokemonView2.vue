@@ -1,8 +1,8 @@
 <template>
   <div class="one">
+    <input type="text" v-model="searchQuery" placeholder="Search Pokemon" />
     <div class="main">
       <h1>{{ localStorageData }}</h1>
-      <!-- <input type="text" v-model="searchQuery" placeholder="Search Pokemon" /> -->
       <div class="container">
         <div
           class="card"
@@ -64,7 +64,7 @@ const pokemonData = ref([]);
 const pokemonCount = ref(0);
 const totalPokemon = ref(0);
 const searchQuery = ref("");
-const limit = ref(6);
+const limit = ref(100);
 // const Global = ref([]);
 const fetchData = async () => {
   try {
@@ -80,6 +80,7 @@ const fetchData = async () => {
 };
 
 const getPokemonImageUrl = (index) => {
+  console.log("image index", index);
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index}.png`;
 };
 
@@ -142,11 +143,12 @@ onBeforeMount(() => {
 });
 
 const filteredPokemon = computed(() => {
-  // console.log(searchQuery);
   const query = searchQuery.value.toLowerCase();
-  return pokemonData.value.filter((pokemon) =>
+  const filteredData = pokemonData.value.filter((pokemon) =>
     pokemon.name.toLowerCase().includes(query)
   );
+  console.log("filterdata", filteredData);
+  return filteredData.slice(0, 6);
 });
 
 onMounted(() => {
@@ -170,6 +172,14 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.one input {
+  margin: 10px auto auto auto;
+}
+.one {
+  height: 80vh;
+  width: 90vw;
+  border-radius: 10px;
+}
 .main {
   align-content: center;
   justify-content: center;

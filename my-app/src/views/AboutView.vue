@@ -22,6 +22,7 @@ import AshPikachu from "../views/AshPikachu.vue";
 
 <style scoped>
 .container {
+  background-color: cadetblue;
   height: 80vh;
   width: 90vw;
   margin: auto;
@@ -29,6 +30,7 @@ import AshPikachu from "../views/AshPikachu.vue";
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 10px;
 }
 h1 {
   color: greenyellow;

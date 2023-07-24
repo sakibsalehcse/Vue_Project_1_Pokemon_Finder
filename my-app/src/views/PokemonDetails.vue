@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <h1>
       Details of <span class="pokemon-name">{{ name }}</span>
     </h1>
@@ -110,6 +110,11 @@ export default {
 </script>
 
 <style scoped>
+.main {
+  background-color: cadetblue;
+  height: 100vh;
+  width: 100vw;
+}
 h1 {
   color: lightgreen;
 }

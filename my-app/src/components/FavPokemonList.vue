@@ -1,8 +1,10 @@
 <template>
-  <div class="main">
-    <h1>Favorite's Pokémon list</h1>
-    <div v-for="favpokemon in myArray" :key="favpokemon.name">
-      <h2>{{ favpokemon }}</h2>
+  <h1>Favorite's Pokémon list</h1>
+  <div class="one">
+    <div class="main">
+      <div v-for="favpokemon in myArray" :key="favpokemon.name">
+        <h2>{{ favpokemon }}</h2>
+      </div>
     </div>
   </div>
 </template>
@@ -22,6 +24,13 @@ const myArray = computed(() => myArrayRef.value.map((pokemon) => pokemon.name));
 </script>
 
 <style scoped>
+.one {
+  background-color: cadetblue;
+  height: 80vh;
+  width: 90vw;
+  margin: auto;
+  border-radius: 10px;
+}
 .main {
   height: auto;
   width: 30%;
@@ -38,7 +47,7 @@ const myArray = computed(() => myArrayRef.value.map((pokemon) => pokemon.name));
   border-radius: 10px;
 }
 h1 {
-  color: lightgreen;
+  color: greenyellow;
 }
 h2 {
   color: black;
