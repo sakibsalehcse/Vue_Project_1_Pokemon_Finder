@@ -14,11 +14,9 @@
               'is-fav': pokemon.isFav,
               'not-fav': !pokemon.isFav,
             }"
-            @click="AddTOFav(pokemon)"
+            @click="AddToFav(pokemon)"
           >
-            <!-- <span v-if="isFavPokemon(pokemon)">⭐</span>
-            <span v-else>Add to Fav</span> -->
-            <span v-if="isFav">⭐</span>
+            <span v-if="pokemon.isFav">⭐</span>
             <span v-else>Add to Fav</span>
           </button>
 
@@ -38,12 +36,6 @@
         </button>
       </div>
     </div>
-    <!-- <h1>Favorite's Pokémon list</h1>
-    <div v-for="favpokemon in favPokimonList" :key="favpokemon.name">
-      <h1 :style="{ color: 'white', fontSize: '10px' }">
-        {{ favpokemon.name }}
-      </h1>
-    </div> -->
   </div>
 </template>
 
@@ -51,28 +43,34 @@
 import { ref, computed, onMounted, onBeforeMount } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
-// const localStorageData = JSON.parse(localStorage.getItem("data"));
-// console.log(localStorageData);
-const isFav = ref(false);
-// function AddTOFav() {
-//   isFav.value = !isFav.value;
-// }
-// const localVal = ref([]);
-const favPokimonList = ref([]);
 const router = useRouter();
 const pokemonData = ref([]);
 const pokemonCount = ref(0);
 const totalPokemon = ref(0);
 const searchQuery = ref("");
 const limit = ref(100);
-// const Global = ref([]);
+
 const fetchData = async () => {
   try {
-    //   limit.value = 100;
     const response = await axios.get(
       `https://pokeapi.co/api/v2/pokemon?limit=${limit.value}&offset=${totalPokemon.value}`
     );
-    pokemonData.value = response.data.results;
+    const apiPokemonData = response.data.results;
+
+    const localFavPokemon =
+      JSON.parse(localStorage.getItem("LocalValFavPokemon")) || [];
+    apiPokemonData.forEach((pokemon) => {
+      const isFavPokemon = localFavPokemon.some(
+        (localFav) => localFav.name === pokemon.name
+      );
+      if (isFavPokemon) {
+        pokemon.isFav = true;
+      } else {
+        pokemon.isFav = false;
+      }
+    });
+
+    pokemonData.value = apiPokemonData;
     pokemonCount.value = response.data.count;
   } catch (error) {
     console.error(error);
@@ -89,44 +87,30 @@ const navigateToPokemonDetails = (pokemon) => {
 };
 
 const previousPage = () => {
-  totalPokemon.value -= 8;
+  totalPokemon.value -= 6;
   fetchData();
 };
 
 const nextPage = () => {
-  totalPokemon.value += 8;
+  totalPokemon.value += 6;
   fetchData();
 };
 
-const twoFunction = () => {
-  AddTOFav();
-};
-console.log(twoFunction);
-function AddTOFav(pokemon) {
-  console.log(favPokimonList.value, pokemon);
-  if (favPokimonList.value !== null) {
-    console.log(1);
-    let flg = false;
-    favPokimonList.value.forEach((p) => {
-      if (p == pokemon) {
-        console.log(2);
-        favPokimonList.value.pop(pokemon);
-        flg = true;
-        isFav.value = !isFav.value;
-      }
-    });
-    if (flg == false) {
-      console.log(3);
-      favPokimonList.value.push(pokemon);
-      isFav.value = true;
-    }
+const favPokimonList = ref(
+  JSON.parse(localStorage.getItem("LocalValFavPokemon")) || []
+);
+
+function AddToFav(pokemon) {
+  const index = favPokimonList.value.findIndex((p) => p.name === pokemon.name);
+  if (index !== -1) {
+    favPokimonList.value.splice(index, 1);
+    pokemon.isFav = false;
   } else {
     favPokimonList.value.push(pokemon);
+    pokemon.isFav = true;
   }
-  console.log(4);
-  const StoreLocalVal = JSON.stringify(favPokimonList.value);
-  console.log(favPokimonList);
-  localStorage.setItem("LocalValFavPokemon", StoreLocalVal);
+  const storeLocalVal = JSON.stringify(favPokimonList.value);
+  localStorage.setItem("LocalValFavPokemon", storeLocalVal);
 }
 
 onBeforeMount(() => {
@@ -154,21 +138,6 @@ const filteredPokemon = computed(() => {
 onMounted(() => {
   fetchData();
 });
-
-// function isFavPokemon(pokemon) {
-//   console.log(pokemon);
-//   if (favPokimonList.value) {
-//     favPokimonList.value.forEach((p) => {
-//       if (p == pokemon) {
-//         console.log(5);
-//         return true;
-//       } else {
-//         return false;
-//       }
-//     });
-//   }
-// }
-// console.log(isFavPokemon);
 </script>
 
 <style scoped>
