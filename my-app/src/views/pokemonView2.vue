@@ -87,12 +87,12 @@ const navigateToPokemonDetails = (pokemon) => {
 };
 
 const previousPage = () => {
-  totalPokemon.value -= 6;
+  totalPokemon.value -= 10;
   fetchData();
 };
 
 const nextPage = () => {
-  totalPokemon.value += 6;
+  totalPokemon.value += 10;
   fetchData();
 };
 
@@ -132,7 +132,7 @@ const filteredPokemon = computed(() => {
     pokemon.name.toLowerCase().includes(query)
   );
   console.log("filterdata", filteredData);
-  return filteredData.slice(0, 6);
+  return filteredData.slice(0, 10);
 });
 
 onMounted(() => {
@@ -153,6 +153,7 @@ onMounted(() => {
   align-content: center;
   justify-content: center;
   margin: auto;
+  /* background-color: black; */
 }
 .is-fav {
   background-color: white;
@@ -162,14 +163,19 @@ onMounted(() => {
 }
 .container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin: 0 auto auto 20%;
+  /* margin: 0 auto auto 20%; */
+  /* border: solid 2px;
+  border-radius: 10px;
+  border-color: red;
+  padding: 10px; */
   height: auto;
   width: auto;
   gap: 10px;
+  /* background-color: beige; */
 }
 
 .card {
