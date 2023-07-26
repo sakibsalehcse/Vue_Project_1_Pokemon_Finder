@@ -4,7 +4,7 @@
   <div class="one">
     <div class="main">
       <div class="flex" v-for="favpokemon in myArray" :key="favpokemon.name">
-        <h2>{{ favpokemon }}</h2>
+        <h2 @click="navigateToPokemonDetails(favpokemon)">{{ favpokemon }}</h2>
         <button @click="itemRem(favpokemon)">❌</button>
       </div>
     </div>
@@ -13,14 +13,17 @@
 
 <script setup>
 import { onBeforeMount, ref, computed } from "vue";
-
+import { useRouter } from "vue-router";
+const router = useRouter();
 const myArrayRef = ref([]);
 onBeforeMount(() => {
   const arrayString = localStorage.getItem("LocalValFavPokemon");
   const myArray = JSON.parse(arrayString);
   myArrayRef.value = Array.isArray(myArray) ? myArray : [];
 });
-
+const navigateToPokemonDetails = (favpokemon) => {
+  router.push({ name: "PokemonDetails", params: { name: favpokemon } });
+};
 const myArray = computed(() => myArrayRef.value.map((pokemon) => pokemon.name));
 function clearData() {
   localStorage.removeItem("LocalValFavPokemon");
@@ -81,5 +84,12 @@ h1 {
 }
 h2 {
   color: black;
+  background-color: white;
+  border-radius: 10px;
+}
+h2:hover {
+  color: black;
+  background-color: greenyellow;
+  border-radius: 10px;
 }
 </style>
