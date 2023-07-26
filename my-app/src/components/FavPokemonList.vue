@@ -86,6 +86,7 @@ h2 {
   color: black;
   background-color: white;
   border-radius: 10px;
+  cursor: pointer;
 }
 h2:hover {
   color: black;

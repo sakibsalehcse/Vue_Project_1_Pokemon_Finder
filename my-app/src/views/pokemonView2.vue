@@ -179,6 +179,7 @@ onMounted(() => {
 }
 
 .card {
+  cursor: pointer;
   background: linear-gradient(
     to right bottom,
     rgba(255, 255, 255, 1),
