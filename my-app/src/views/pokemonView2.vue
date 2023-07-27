@@ -6,7 +6,7 @@
       <h1>{{ localStorageData }}</h1>
       <div class="container">
         <div
-          @mouseenter="play"
+          @click="play"
           class="card"
           v-for="(pokemon, index) in filteredPokemon"
           :key="pokemon.name"
