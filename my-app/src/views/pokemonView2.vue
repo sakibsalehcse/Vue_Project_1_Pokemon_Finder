@@ -282,7 +282,7 @@ onMounted(() => {
   box-shadow: 0 0 10px 3px yellow;
 } */
 .card:hover {
-  box-shadow: 0 0 40px 20px rgb(26, 104, 107);
+  box-shadow: 0 0 40px 20px rgb(241, 237, 237);
   background: linear-gradient(
     to right bottom,
     rgba(255, 255, 255, 0),
