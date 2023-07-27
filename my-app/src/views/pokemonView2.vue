@@ -267,8 +267,8 @@ onMounted(() => {
   transition: box-shadow 0.3s ease-in-out;
 }
 .card img {
-  height: 250px;
-  height: 250px;
+  height: 200px;
+  height: 200px;
 }
 /* .card button {
   transition: box-shadow 0.3s ease-in-out;
@@ -388,8 +388,8 @@ input[type="text"] {
     margin: auto;
   }
   .card img {
-    height: 250px;
-    height: 250px;
+    height: 200px;
+    height: 200px;
   }
 }
 </style>
