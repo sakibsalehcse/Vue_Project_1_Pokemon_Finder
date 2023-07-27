@@ -1,9 +1,9 @@
 <template>
   <div class="main">
-    <h1>
-      Details of <span class="pokemon-name">{{ name }}</span>
-    </h1>
-    <div v-if="itemData" class="container">
+    <div v-if="itemData" class="rgbcard">
+      <h1>
+        Details of <span class="pokemon-name">{{ name }}</span>
+      </h1>
       <!-- <h3>Name : {{ itemData.name }}</h3> -->
       <div class="info">
         <h3>Name : {{ name }}</h3>
@@ -114,6 +114,10 @@ export default {
   background-color: cadetblue;
   height: 100vh;
   width: 100vw;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  padding-top: 2%;
 }
 h1 {
   color: lightgreen;
@@ -141,8 +145,8 @@ h1 {
 }
 
 img {
-  height: 400px;
-  width: 400px;
+  height: 300px;
+  width: 300px;
 }
 
 .info {
@@ -150,6 +154,9 @@ img {
   font-family: Arial, Helvetica, sans-serif;
   font-size: large;
   text-align: left;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 p {

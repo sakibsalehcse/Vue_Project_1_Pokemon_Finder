@@ -9,13 +9,7 @@
           v-for="(pokemon, index) in filteredPokemon"
           :key="pokemon.name"
         >
-          <button
-            :class="{
-              'is-fav': pokemon.isFav,
-              'not-fav': !pokemon.isFav,
-            }"
-            @click="AddToFav(pokemon)"
-          >
+          <button class="rgbbtn" @click="AddToFav(pokemon)">
             <span v-if="pokemon.isFav">⭐</span>
             <span v-else>Add to Fav</span>
           </button>
@@ -30,8 +24,14 @@
         </div>
       </div>
       <div class="buttons">
-        <button v-if="totalPokemon > 0" @click="previousPage">Previous</button>
-        <button v-if="totalPokemon + 6 < pokemonCount" @click="nextPage">
+        <button class="rgbbtn" v-if="totalPokemon > 0" @click="previousPage">
+          Previous
+        </button>
+        <button
+          class="rgbbtn"
+          v-if="totalPokemon + 6 < pokemonCount"
+          @click="nextPage"
+        >
           Next
         </button>
       </div>
@@ -174,7 +174,8 @@ onMounted(() => {
   padding: 10px; */
   height: auto;
   width: auto;
-  gap: 10px;
+  gap: 40px;
+  padding: 20px;
   /* background-color: beige; */
 }
 
@@ -197,7 +198,7 @@ onMounted(() => {
   height: 250px;
   height: 250px;
 }
-.card button {
+/* .card button {
   transition: box-shadow 0.3s ease-in-out;
 }
 .card button:hover {
@@ -207,7 +208,7 @@ onMounted(() => {
     rgb(250, 244, 0)
   );
   box-shadow: 0 0 10px 3px yellow;
-}
+} */
 .card:hover {
   box-shadow: 0 0 40px 20px rgb(26, 104, 107);
   background: linear-gradient(
@@ -228,9 +229,10 @@ onMounted(() => {
   display: flex;
   justify-content: center;
   margin: 20px 0;
+  gap: 2rem;
 }
 
-button {
+/* button {
   margin: 0 10px;
   background-color: yellow;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
@@ -239,7 +241,7 @@ button {
   color: black;
   height: 2rem;
   width: 5rem;
-}
+} */
 
 .search-bar {
   display: flex;

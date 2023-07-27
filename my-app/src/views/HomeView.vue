@@ -15,7 +15,7 @@ import PokemonView from "../views/pokemonView2.vue";
 </template>
 <style scope>
 .visible {
-  margin-top: 70px;
+  margin-top: 90px;
 }
 .maindiv {
   display: flex;
