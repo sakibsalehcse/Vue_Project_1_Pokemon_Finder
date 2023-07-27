@@ -1,6 +1,6 @@
 <template>
   <h1>Introduction to Pokémon</h1>
-  <div class="container">
+  <div class="container" @click="play">
     <div class="pik"><AshPikachu /></div>
     <p>
       Pokémon, contraction of Pocket Monsters, is a Japanese media franchise

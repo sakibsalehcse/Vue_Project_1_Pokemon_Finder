@@ -1,10 +1,12 @@
 <template>
   <div class="one">
+    <audio id="hoverSound" src="../assets/a.wav"></audio>
     <input type="text" v-model="searchQuery" placeholder="Search Pokemon" />
     <div class="main">
       <h1>{{ localStorageData }}</h1>
       <div class="container">
         <div
+          @mouseenter="play"
           class="card"
           v-for="(pokemon, index) in filteredPokemon"
           :key="pokemon.name"
@@ -43,6 +45,9 @@
 import { ref, computed, onMounted, onBeforeMount } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
+import useSound from "vue-use-sound";
+import a from "../assets/a.wav";
+const [play] = useSound(a);
 const router = useRouter();
 const pokemonData = ref([]);
 const pokemonCount = ref(0);
