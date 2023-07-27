@@ -120,7 +120,7 @@ export default {
   padding-top: 2%;
 }
 h1 {
-  color: lightgreen;
+  color: black;
 }
 .container {
   display: flex;
