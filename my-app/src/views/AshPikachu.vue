@@ -22,7 +22,7 @@ export default {};
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  height: 95%;
+  height: 83%;
   width: 80%;
 }
 

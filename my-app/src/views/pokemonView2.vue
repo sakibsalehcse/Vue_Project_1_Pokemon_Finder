@@ -371,7 +371,7 @@ input[type="text"] {
   .card {
     background-color: green;
     height: 16rem;
-    width: 12rem;
+    width: 14rem;
     border-radius: 10px;
     margin: auto;
   }
@@ -382,8 +382,10 @@ input[type="text"] {
 }
 @media only screen and (min-width: 1500px) {
   .card {
-    height: fit-content;
-    width: fit-content;
+    /* height: fit-content;
+    width: fit-content; */
+    height: 18rem;
+    width: 14rem;
     border-radius: 10px;
     margin: auto;
   }
