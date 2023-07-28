@@ -46,7 +46,6 @@ h1 {
   .maindiv {
     display: flex;
     justify-content: space-between;
-    background-color: cadetblue;
     display: flex;
     flex-direction: column;
     margin: auto;
