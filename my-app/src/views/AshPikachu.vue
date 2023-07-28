@@ -10,7 +10,7 @@ export default {};
 
 <style scoped>
 .rgb {
-  padding: 0.6em 2em;
+  /* padding: 0.6em 2em; */
   border: none;
   outline: none;
   color: black;
@@ -22,8 +22,13 @@ export default {};
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  height: 83%;
-  width: 80%;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  text-align: center;
 }
 
 .rgb:before {
@@ -41,8 +46,8 @@ export default {};
     #ff0000
   );
   position: absolute;
-  top: -2px;
-  left: -2px;
+  /* top: -2px; */
+  /* left: -2px; */
   background-size: 400%;
   z-index: -1;
   filter: blur(5px);
@@ -83,8 +88,12 @@ export default {};
     rgba(255, 255, 255, 0),
     rgba(255, 255, 255, 1)
   );
-  height: 65vh;
+  height: 100vh;
   border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
 }
 .body:hover {
   background: linear-gradient(

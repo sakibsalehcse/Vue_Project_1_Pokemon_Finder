@@ -159,6 +159,12 @@ img {
   text-align: center;
 }
 
+.rgbcard {
+  width: 50rem;
+  height: 50rem;
+  margin-top: 1rem;
+}
+
 p {
   color: white;
 }
@@ -166,42 +172,63 @@ p {
 h1 .pokemon-name {
   color: red;
 }
-
-@media only screen and (max-width: 767px) {
-  .container {
-    height: 60vh;
-    width: 65vw;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-  }
+@media (width <= 600px) {
   img {
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 150px;
   }
-
   .info {
     font-size: small;
     text-align: center;
   }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 1499px) {
-  .container {
-    height: 70vh;
-    width: 60vw;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
+  .rgbcard {
+    width: 20rem;
+    margin-top: 3rem;
   }
+}
+@media (601px <=width <= 768px) {
   img {
     height: 200px;
     width: 200px;
   }
-
   .info {
-    font-size: medium;
+    font-size: small;
     text-align: center;
+  }
+  .rgbcard {
+    width: 25rem;
+    height: 45rem;
+    margin-top: 3rem;
+  }
+}
+@media (769px <=width <= 992px) {
+  img {
+    height: 250px;
+    width: 250px;
+  }
+  .info {
+    font-size: large;
+    text-align: center;
+  }
+  .rgbcard {
+    width: 35rem;
+    height: 50rem;
+    margin-top: 3rem;
+  }
+}
+@media (993px <=width <= 1200px) {
+  img {
+    height: 300px;
+    width: 300px;
+  }
+  .info {
+    font-size: large;
+    text-align: center;
+  }
+  .rgbcard {
+    width: 50rem;
+    height: 50rem;
+    margin-top: 3rem;
   }
 }
 </style>

@@ -159,7 +159,7 @@ onMounted(() => {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  height: 95%;
+  height: 90%;
   width: 80%;
 }
 
@@ -244,16 +244,10 @@ onMounted(() => {
   justify-content: center;
   align-items: center;
   text-align: center;
-  /* margin: 0 auto auto 20%; */
-  /* border: solid 2px;
-  border-radius: 10px;
-  border-color: red;
-  padding: 10px; */
   height: auto;
   width: auto;
   gap: 40px;
   padding: 20px;
-  /* background-color: beige; */
 }
 
 .card {
@@ -264,28 +258,17 @@ onMounted(() => {
     rgba(255, 255, 255, 0)
   );
   border-radius: 10px;
-  height: min-content;
-  width: min-content;
+  height: 15rem;
+  width: 12rem;
   margin: auto;
   padding: 10px;
   color: white;
   transition: box-shadow 0.3s ease-in-out;
 }
 .card img {
-  height: 200px;
-  height: 200px;
+  height: 150px;
+  height: 150px;
 }
-/* .card button {
-  transition: box-shadow 0.3s ease-in-out;
-}
-.card button:hover {
-  background: linear-gradient(
-    to right bottom,
-    rgba(185, 8, 10),
-    rgb(250, 244, 0)
-  );
-  box-shadow: 0 0 10px 3px yellow;
-} */
 .card:hover {
   box-shadow: 0 0 40px 20px rgb(241, 237, 237);
   background: linear-gradient(
@@ -308,18 +291,6 @@ onMounted(() => {
   margin: 20px 0;
   gap: 2rem;
 }
-
-/* button {
-  margin: 0 10px;
-  background-color: yellow;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-weight: bold;
-  border-radius: 10px;
-  color: black;
-  height: 2rem;
-  width: 5rem;
-} */
-
 .search-bar {
   display: flex;
   justify-content: center;
@@ -336,34 +307,15 @@ input[type="text"] {
   outline: none;
 }
 
-@media only screen and (max-width: 767px) {
+@media (width <= 600px) {
   .card button {
-    height: auto;
-    width: auto;
+    height: 1.5rem;
+    width: 6rem;
+    font-size: 10px;
   }
-  .container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin: 0 auto auto auto;
-    gap: 10px;
+  .card h1 {
+    font-size: 10px;
   }
-  .card {
-    background-color: green;
-    height: 13rem;
-    width: 10rem;
-    border-radius: 10px;
-    margin: auto;
-  }
-  .card img {
-    height: 100;
-    height: 100;
-  }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 1499px) {
   .container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -371,32 +323,86 @@ input[type="text"] {
     align-items: center;
     text-align: center;
     margin: 0 auto auto auto;
-    gap: 10px;
+    gap: 5px;
   }
   .card {
     background-color: green;
-    height: 16rem;
-    width: 14rem;
+    height: 8rem;
+    width: 6rem;
     border-radius: 10px;
     margin: auto;
+    font-size: 1px;
   }
   .card img {
-    height: 200px;
-    height: 200px;
+    height: 80px;
+    height: 80px;
   }
 }
-@media only screen and (min-width: 1500px) {
+@media (601px <=width <= 768px) {
+  .card button {
+    height: 1.5rem;
+    width: 6rem;
+    font-size: 10px;
+  }
+  .card h1 {
+    font-size: 12px;
+  }
+  .container {
+    grid-template-columns: repeat(4, 1fr);
+  }
   .card {
-    /* height: fit-content;
-    width: fit-content; */
-    height: 18rem;
-    width: 14rem;
-    border-radius: 10px;
+    height: 9rem;
+    width: 6rem;
+    margin: auto;
+    font-size: 1px;
+  }
+  .card img {
+    height: 85px;
+    height: 85px;
+  }
+}
+@media (769px <=width <= 992px) {
+  .card button {
+    height: 1.5rem;
+    width: 6rem;
+    font-size: 10px;
+  }
+  .card h1 {
+    font-size: 14px;
+  }
+  .container {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .card {
+    height: 12rem;
+    width: 6rem;
     margin: auto;
   }
   .card img {
-    height: 200px;
-    height: 200px;
+    height: 90px;
+    height: 90px;
+  }
+}
+@media (993px <=width <= 1200px) {
+  .card button {
+    height: 1.5rem;
+    width: 6rem;
+    font-size: 10px;
+  }
+  .card h1 {
+    font-size: 14px;
+  }
+  .container {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .card {
+    height: 12rem;
+    width: 8rem;
+    margin: auto;
+  }
+  .card img {
+    height: 100px;
+    height: 100px;
   }
 }
 </style>

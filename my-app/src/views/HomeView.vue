@@ -33,24 +33,10 @@ h1 {
   justify-content: space-between;
   margin: auto 4% auto 0;
 }
-@media only screen and (max-width: 767px) {
-  .home {
-    margin: auto;
-  }
-  .visible {
-    display: none;
-  }
-  .maindiv {
-    display: flex;
-    justify-content: space-between;
-    background-color: cadetblue;
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-  }
+.visible {
+  height: 35rem;
 }
-
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
+@media (width <= 1600px) {
   .home {
     margin: auto;
   }

@@ -61,7 +61,7 @@ function itemRem(pokemonName) {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  height: 95%;
+  height: 80%;
   width: 80%;
 }
 

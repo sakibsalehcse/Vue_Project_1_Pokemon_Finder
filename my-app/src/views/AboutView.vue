@@ -1,7 +1,7 @@
 <template>
   <h1>Introduction to Pokémon</h1>
   <div class="container" @click="play">
-    <div class="pik"><AshPikachu /></div>
+    <div><AshPikachu class="pik" /></div>
     <p>
       Pokémon, contraction of Pocket Monsters, is a Japanese media franchise
       managed by The Pokémon Company and created by Nintendo. The franchise
@@ -36,29 +36,42 @@ h1 {
   color: greenyellow;
 }
 .pik {
-  height: auto;
-  width: auto;
+  margin: 20px auto;
+  height: 30rem;
+  width: 35rem;
+  margin: auto;
 }
 
 p {
   color: white;
 }
 
-@media only screen and (max-width: 767px) {
-  .container {
-    height: 80vh;
-    width: 90vw;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+@media (width <= 600px) {
   .pik {
-    display: none;
+    height: 32rem;
+    width: 25rem;
   }
 }
-
-@media only screen and (min-width: 768px) and (max-width: 1499px) {
+@media (601px <=width <= 768px) {
+  .pik {
+    height: 32rem;
+    width: 30rem;
+  }
+}
+@media (769px <=width <= 992px) {
+  .pik {
+    height: 30rem;
+    width: 35rem;
+  }
+}
+@media (993px <=width <= 1200px) {
+  .pik {
+    height: 30rem;
+    width: 35rem;
+  }
+  p {
+    color: white;
+    font-size: clamp(0.5rem, 2vw, 10rem);
+  }
 }
 </style>
