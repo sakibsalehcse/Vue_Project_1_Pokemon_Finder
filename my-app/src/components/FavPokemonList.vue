@@ -1,4 +1,5 @@
 <template>
+  <audio id="hoverSound" src="../assets/a.wav"></audio>
   <h1>Favorite's Pokémon list</h1>
   <button class="rgbbtn" @click="clearData">clear data</button>
   <div class="one">
@@ -18,6 +19,9 @@
 <script setup>
 import { onBeforeMount, ref, computed } from "vue";
 import { useRouter } from "vue-router";
+import useSound from "vue-use-sound";
+import a from "../assets/a.wav";
+const [play] = useSound(a);
 const router = useRouter();
 const myArrayRef = ref([]);
 onBeforeMount(() => {
@@ -27,14 +31,17 @@ onBeforeMount(() => {
 });
 const navigateToPokemonDetails = (favpokemon) => {
   router.push({ name: "PokemonDetails", params: { name: favpokemon } });
+  play();
 };
 const myArray = computed(() => myArrayRef.value.map((pokemon) => pokemon.name));
 function clearData() {
+  play();
   localStorage.removeItem("LocalValFavPokemon");
   myArrayRef.value = [];
 }
 
 function itemRem(pokemonName) {
+  play();
   const index = myArrayRef.value.findIndex(
     (pokemon) => pokemon.name === pokemonName
   );
